@@ -1,12 +1,13 @@
 services:
   backend:
     build: ./backend
-    ports:
-      - "8080:8080"
+    restart: unless-stopped
+    # No host port: nginx proxies /api, and this keeps :8080 free for `go run .`.
 
   frontend:
     build: ./frontend
+    restart: unless-stopped
     ports:
-      - "5173:80"
+      - "127.0.0.1:3000:80"
     depends_on:
       - backend

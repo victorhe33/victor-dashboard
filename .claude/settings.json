@@ -1,13 +1,14 @@
 {
   "permissions": {
     "allow": [
-      "Bash(go test:*)",
-      "Bash(go vet:*)",
-      "Bash(go build:*)",
-      "Bash(go run:*)",
-      "Bash(npm run:*)",
-      "Bash(npm install:*)",
-      "Bash(docker compose:*)"
+      "Bash(go test ./...)",
+      "Bash(go vet ./...)",
+      "Bash(go build ./...)",
+      "Bash(npm run build)",
+      "Bash(npm ci)",
+      "Bash(docker compose up --build -d)",
+      "Bash(docker compose down)",
+      "Bash(docker compose ps)"
     ]
   }
 }
