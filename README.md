@@ -16,8 +16,8 @@ make up       # rebuild and start both services
 make help     # list all targets
 ```
 
-- UI: http://localhost:3000
-- API (via the nginx proxy): http://localhost:3000/api/health
+- UI: http://localhost:4580
+- API (via the nginx proxy): http://localhost:4580/api/health
 
 Ports bind to `127.0.0.1` only, so the dashboard isn't reachable from your network.
 
@@ -49,7 +49,7 @@ make dev-backend    # terminal 1
 make dev-frontend   # terminal 2
 ```
 
-UI at http://localhost:5173, API at http://localhost:8080. Vite proxies `/api` to `http://localhost:8080` (set `API_URL` to change it). These ports don't overlap with the Docker stack, so both can run at once.
+UI at http://localhost:4582, API at http://localhost:4581. Vite proxies `/api` to `http://localhost:4581` (set `API_URL` to change it). These ports don't overlap with the Docker stack, so both can run at once.
 
 ## API
 

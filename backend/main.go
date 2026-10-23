@@ -47,7 +47,7 @@ func writeJSON(w http.ResponseWriter, v any) {
 func main() {
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "8080"
+		port = "4581"
 	}
 	addr := ":" + port
 	log.Printf("listening on %s", addr)

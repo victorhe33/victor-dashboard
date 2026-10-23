@@ -4,7 +4,7 @@
 help: ## List targets
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*## "}; {printf "  %-14s %s\n", $$1, $$2}'
 
-# Docker stack (always-on copy at http://localhost:3000)
+# Docker stack (always-on copy at http://localhost:4580)
 
 up: ## Rebuild and start both services
 	docker compose up --build -d
@@ -26,8 +26,8 @@ logs: ## Follow container logs
 test: ## Vet and test the backend
 	cd backend && go vet ./... && go test ./...
 
-dev-backend: ## Run the Go API on :8080
+dev-backend: ## Run the Go API on :4581
 	cd backend && go run .
 
-dev-frontend: ## Run the Vite dev server on :5173
+dev-frontend: ## Run the Vite dev server on :4582
 	cd frontend && npm run dev
