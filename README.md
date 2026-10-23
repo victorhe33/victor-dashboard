@@ -12,32 +12,41 @@ A locally run personal dashboard. Go API backend, Vue 3 frontend, wired together
 ## Quick start
 
 ```sh
-make          # same as `make all`: rebuild and start both services
-make server   # rebuild/restart just the Go backend
-make client   # rebuild/restart just the Vue frontend
+make up       # rebuild and start both services
+make help     # list all targets
 ```
-
-These wrap `docker compose up --build -d [service]`.
 
 - UI: http://localhost:3000
 - API (via the nginx proxy): http://localhost:3000/api/health
 
 Ports bind to `127.0.0.1` only, so the dashboard isn't reachable from your network.
 
+## Make targets
+
+| Target | Does |
+|--------|------|
+| `make up` | Rebuild and start both containers |
+| `make up-backend` / `make up-frontend` | Rebuild and restart one container |
+| `make down` | Stop the stack |
+| `make logs` | Follow container logs |
+| `make test` | `go vet` + `go test` the backend |
+| `make dev-backend` / `make dev-frontend` | Run locally without Docker |
+
+Plain `make` prints the target list. Docker targets wrap `docker compose`, so any compose command still works directly.
+
 ### Run on login
 
-Both services use `restart: unless-stopped`, so once started they come back whenever Docker does. Enable Docker Desktop → Settings → General → **Start Docker Desktop when you sign in** and the dashboard will be up after every reboot. `docker compose down` stops it until the next `up`.
+Both services use `restart: unless-stopped`, so once started they come back whenever Docker does. Enable Docker Desktop → Settings → General → **Start Docker Desktop when you sign in** and the dashboard will be up after every reboot. `make down` stops it until the next `make up`.
 
-To pick up code changes, rerun `make` (or `make server` / `make client`).
+To pick up code changes, rerun `make up` (or `make up-backend` / `make up-frontend`).
 
 ## Local development (no Docker)
 
 ```sh
-# terminal 1
-cd backend && go run .
+cd frontend && npm install   # first time only
 
-# terminal 2
-cd frontend && npm install && npm run dev
+make dev-backend    # terminal 1
+make dev-frontend   # terminal 2
 ```
 
 UI at http://localhost:5173, API at http://localhost:8080. Vite proxies `/api` to `http://localhost:8080` (set `API_URL` to change it). These ports don't overlap with the Docker stack, so both can run at once.
@@ -52,5 +61,5 @@ UI at http://localhost:5173, API at http://localhost:8080. Vite proxies `/api` t
 ## Tests
 
 ```sh
-cd backend && go test ./...
+make test
 ```
