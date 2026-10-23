@@ -6,6 +6,10 @@
       "Bash(go build ./...)",
       "Bash(npm run build)",
       "Bash(npm ci)",
+      "Bash(make)",
+      "Bash(make all)",
+      "Bash(make server)",
+      "Bash(make client)",
       "Bash(docker compose up --build -d)",
       "Bash(docker compose down)",
       "Bash(docker compose ps)"

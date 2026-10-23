@@ -12,8 +12,12 @@ A locally run personal dashboard. Go API backend, Vue 3 frontend, wired together
 ## Quick start
 
 ```sh
-docker compose up --build -d
+make          # same as `make all`: rebuild and start both services
+make server   # rebuild/restart just the Go backend
+make client   # rebuild/restart just the Vue frontend
 ```
+
+These wrap `docker compose up --build -d [service]`.
 
 - UI: http://localhost:3000
 - API (via the nginx proxy): http://localhost:3000/api/health
@@ -24,7 +28,7 @@ Ports bind to `127.0.0.1` only, so the dashboard isn't reachable from your netwo
 
 Both services use `restart: unless-stopped`, so once started they come back whenever Docker does. Enable Docker Desktop → Settings → General → **Start Docker Desktop when you sign in** and the dashboard will be up after every reboot. `docker compose down` stops it until the next `up`.
 
-To pick up code changes, rerun `docker compose up --build -d`.
+To pick up code changes, rerun `make` (or `make server` / `make client`).
 
 ## Local development (no Docker)
 
